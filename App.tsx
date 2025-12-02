@@ -29,11 +29,12 @@ import {
   Dices,
   Palette,
   QrCode,
-  ArrowDownAZ
+  ArrowDownAZ,
+  ArrowUp
 } from 'lucide-react';
 import { Category, Tool } from './types';
 
-// Import components
+// ... (Previous imports for components remain the same)
 import { BasicPercentage } from './components/calculators/BasicPercentage';
 import { RatioPercentage } from './components/calculators/RatioPercentage';
 import { PercentageChange } from './components/calculators/PercentageChange';
@@ -65,9 +66,9 @@ import { Accordion } from './components/ui/Accordion';
 import { RatingWidget } from './components/ui/RatingWidget';
 import { Footer } from './components/layout/Footer';
 import { InfoPage } from './components/pages/InfoPages';
-import { getToolDetails } from './components/content/ToolDescriptions'; // NEW IMPORT
+import { getToolDetails } from './components/content/ToolDescriptions';
 
-// Define Categories
+// ... (CATEGORIES_CONFIG, TIME_UNITS, DATA_UNITS, rawTools, TOOLS definitions remain the same)
 const CATEGORIES_CONFIG: { id: Category; label: string; icon: React.ReactNode; slug?: string }[] = [
   { id: 'all', label: 'Tất cả', icon: <Home size={20} /> },
   { id: 'math', label: 'Toán học', icon: <Calculator size={20} />, slug: 'math' },
@@ -188,11 +189,13 @@ export default function App() {
   const [recentSearches, setRecentSearches] = useState<string[]>([]);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [showScrollTop, setShowScrollTop] = useState(false);
   
   // State for dynamic Schema
   const [dynamicRating, setDynamicRating] = useState<{value: number, count: number} | null>(null);
   const [hasShared, setHasShared] = useState(false);
 
+  // ... (Generate random user counts, Load recent searches, Save View Mode, Save Active Category hooks remain the same)
   // Generate random user counts once on mount
   const userCounts = useMemo(() => {
       const counts: Record<string, number> = {};
@@ -256,11 +259,22 @@ export default function App() {
         } else {
             setShowSearchOnScroll(false);
         }
+        
+        if (window.scrollY > 300) {
+            setShowScrollTop(true);
+        } else {
+            setShowScrollTop(false);
+        }
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const scrollToTop = () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // ... (navigate functions, handleToolClick, handleShare, filteredTools remain the same)
   // Helper to navigate
   const navigateToCategory = (id: Category) => {
       setActiveCategory(id);
@@ -319,6 +333,7 @@ export default function App() {
 
   // SEO & Schema
   useEffect(() => {
+      // ... (SEO Logic remains the same)
       // Dynamic Title
       if (activeTool) {
           document.title = `${activeTool.title} - MultiTools`;
@@ -419,24 +434,33 @@ export default function App() {
       }
   };
 
+  // REFACTORED: RecentSearchesDropdown with auto-suggestions
   const RecentSearchesDropdown = () => {
-      if (!isSearchFocused || recentSearches.length === 0) return null;
+      // Filter suggestions based on query
+      const suggestions = searchQuery 
+        ? recentSearches.filter(s => s.toLowerCase().includes(searchQuery.toLowerCase())) 
+        : recentSearches;
+
+      if (!isSearchFocused || suggestions.length === 0) return null;
+      
       return (
           <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-slate-200 rounded-xl shadow-lg z-50 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
               <div className="flex items-center justify-between px-4 py-2 border-b border-slate-100 bg-slate-50">
                   <span className="text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1">
-                      <History size={12} /> Tìm kiếm gần đây
+                      <History size={12} /> {searchQuery ? 'Gợi ý' : 'Tìm kiếm gần đây'}
                   </span>
-                  <button 
-                    onClick={(e) => { e.preventDefault(); clearRecentSearches(); }}
-                    className="text-xs text-rose-500 hover:text-rose-600 flex items-center gap-1"
-                    onMouseDown={(e) => e.preventDefault()} // Prevent blur
-                  >
-                      <Trash2 size={12} /> Xóa
-                  </button>
+                  {!searchQuery && (
+                    <button 
+                        onClick={(e) => { e.preventDefault(); clearRecentSearches(); }}
+                        className="text-xs text-rose-500 hover:text-rose-600 flex items-center gap-1"
+                        onMouseDown={(e) => e.preventDefault()} 
+                    >
+                        <Trash2 size={12} /> Xóa
+                    </button>
+                  )}
               </div>
               <div className="py-1">
-                  {recentSearches.map((term, idx) => (
+                  {suggestions.map((term, idx) => (
                       <button
                           key={idx}
                           className="w-full text-left px-4 py-2.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-blue-600 transition-colors flex items-center gap-3"
@@ -480,6 +504,7 @@ export default function App() {
                                     onKeyDown={handleSearchKeyDown}
                                     className="w-full bg-slate-100 border border-slate-200 rounded-full pl-9 pr-4 py-1.5 text-sm focus:border-blue-500 outline-none text-slate-800 placeholder-slate-500"
                                 />
+                                <RecentSearchesDropdown />
                             </div>
                         ) : (
                             <div 
@@ -523,6 +548,7 @@ export default function App() {
         </header>
 
         {/* Sidebar (Desktop) */}
+        {/* ... (Sidebar remains the same) */}
         <div className="hidden lg:block fixed top-16 left-0 bottom-0 w-64 bg-white border-r border-slate-200 overflow-y-auto p-4 custom-scrollbar z-40">
             <div className="space-y-1">
                 {CATEGORIES_CONFIG.map(cat => (
@@ -554,10 +580,21 @@ export default function App() {
 
         {/* Main Content */}
         <main className={`flex-1 pt-24 pb-12 px-4 transition-all duration-300 ${!activeToolId && !activePage ? 'lg:pl-72' : 'lg:pl-72'} max-w-7xl mx-auto w-full`}>
+            {/* Breadcrumb for Tool Detail */}
+            {activeTool && (
+                <div className="mb-4 text-sm text-slate-500 flex items-center gap-2">
+                    <span className="hover:text-blue-600 cursor-pointer" onClick={() => navigateToCategory('all')}>Trang chủ</span>
+                    <span>/</span>
+                    <span className="hover:text-blue-600 cursor-pointer" onClick={() => navigateToCategory(activeTool.category)}>{CATEGORIES_CONFIG.find(c => c.id === activeTool.category)?.label}</span>
+                    <span>/</span>
+                    <span className="text-slate-900 font-medium truncate max-w-[200px]">{activeTool.title}</span>
+                </div>
+            )}
+
             {activePage ? (
                 <InfoPage id={activePage} />
             ) : activeTool ? (
-                // TOOL DETAIL VIEW
+                // ... (Tool Detail View remains the same)
                 <div className="animate-in fade-in zoom-in duration-300">
                     <div className="mb-6 flex items-start justify-between gap-4">
                         <div className="flex items-center gap-3">
@@ -606,7 +643,6 @@ export default function App() {
                                 <div className="prose prose-slate max-w-none text-slate-600 bg-white p-6 rounded-2xl border border-slate-200">
                                     <p className="lead">{activeTool.description}</p>
                                     
-                                    {/* Default content if no details provided */}
                                     {!activeTool.details && (
                                         <>
                                             <h3>Tại sao nên sử dụng công cụ {activeTool.title}?</h3>
@@ -622,7 +658,6 @@ export default function App() {
                                         </>
                                     )}
                                     
-                                    {/* Render custom details if available */}
                                     {activeTool.details}
                                 </div>
                             </div>
@@ -758,7 +793,19 @@ export default function App() {
             )}
         </main>
 
+        {/* Scroll To Top Button */}
+        {showScrollTop && (
+            <button 
+                onClick={scrollToTop}
+                className="fixed bottom-8 right-8 p-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg shadow-blue-300 transition-all animate-in zoom-in duration-300 z-40"
+                title="Lên đầu trang"
+            >
+                <ArrowUp size={24} />
+            </button>
+        )}
+
         {/* Mobile Menu Drawer */}
+        {/* ... (Mobile Menu remains the same) */}
         {isMenuOpen && (
             <div className="fixed inset-0 z-[60] lg:hidden">
                 <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onClick={() => setIsMenuOpen(false)}></div>
