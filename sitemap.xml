@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://aitoolfind.co/</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://aitoolfind.co/about</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <!-- Math Tools -->
+  <url><loc>https://aitoolfind.co/percentage-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aitoolfind.co/ratio-percentage</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aitoolfind.co/percentage-change</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aitoolfind.co/find-whole</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aitoolfind.co/sequence-calculator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://aitoolfind.co/logarithm</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://aitoolfind.co/trigonometry</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://aitoolfind.co/calculus-basic</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://aitoolfind.co/random-number</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  
+  <!-- Geometry -->
+  <url><loc>https://aitoolfind.co/circle</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://aitoolfind.co/triangle</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://aitoolfind.co/square</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://aitoolfind.co/rectangle</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://aitoolfind.co/trapezoid</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://aitoolfind.co/rhombus</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://aitoolfind.co/hinh-binh-hanh</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://aitoolfind.co/cube</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://aitoolfind.co/sphere</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://aitoolfind.co/cylinder</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://aitoolfind.co/cone</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://aitoolfind.co/cuboid</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- Text -->
+  <url><loc>https://aitoolfind.co/icon-facebook</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://aitoolfind.co/word-counter</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://aitoolfind.co/number-to-word</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aitoolfind.co/word-to-number</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://aitoolfind.co/doi-kieu-chu</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+
+  <!-- Security/Dev -->
+  <url><loc>https://aitoolfind.co/password-generator</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://aitoolfind.co/tao-ma-qr</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aitoolfind.co/doi-ma-mau</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- Converters -->
+  <url><loc>https://aitoolfind.co/roman-numerals</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://aitoolfind.co/length-converter</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aitoolfind.co/temp-converter</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aitoolfind.co/weight-converter</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aitoolfind.co/doi-don-vi-thoi-gian</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://aitoolfind.co/doi-don-vi-du-lieu</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- Health -->
+  <url><loc>https://aitoolfind.co/bmi-calculator</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://aitoolfind.co/bmr-tdee</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aitoolfind.co/water-calculator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://aitoolfind.co/ideal-weight</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://aitoolfind.co/age-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+
+  <!-- Others -->
+  <url><loc>https://aitoolfind.co/discount-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aitoolfind.co/compound-interest</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aitoolfind.co/physics-calculator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://aitoolfind.co/dem-ngay</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aitoolfind.co/countdown-timer</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+</urlset>

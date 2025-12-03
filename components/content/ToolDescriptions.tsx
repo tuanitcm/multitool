@@ -1,5 +1,11 @@
-
 import React from 'react';
+
+// Helper for internal links to prevent full page reload (handled in App.tsx)
+const Link = ({ href, children }: { href: string; children?: React.ReactNode }) => (
+  <a href={href} className="text-blue-600 hover:underline font-medium cursor-pointer" data-internal-link>
+    {children}
+  </a>
+);
 
 export const getToolDetails = (id: string, title: string): React.ReactNode => {
   switch (id) {
@@ -18,7 +24,7 @@ export const getToolDetails = (id: string, title: string): React.ReactNode => {
           </div>
           <h3>Ví dụ thực tế</h3>
           <ul className="list-disc list-inside space-y-2 ml-2">
-            <li><strong>Mua sắm:</strong> Áo giá 500.000đ giảm 20%. Số tiền giảm là: (20/100) * 500.000 = 100.000đ.</li>
+            <li><strong>Mua sắm:</strong> Áo giá 500.000đ giảm 20%. Số tiền giảm là: (20/100) * 500.000 = 100.000đ. Để tính nhanh giá sau giảm, bạn có thể dùng <Link href="/discount-calculator">Công cụ tính giảm giá</Link>.</li>
             <li><strong>Thuế VAT:</strong> Sản phẩm giá 10 triệu, thuế 8%. Tiền thuế là: 0.08 * 10tr = 800.000đ.</li>
           </ul>
         </>
@@ -35,7 +41,7 @@ export const getToolDetails = (id: string, title: string): React.ReactNode => {
             % Thay đổi = ((Giá trị mới - Giá trị cũ) ÷ |Giá trị cũ|) × 100%
           </div>
           <p>
-            Nếu kết quả là số dương (+), đó là sự <strong>tăng trưởng</strong>. Nếu kết quả là số âm (-), đó là sự <strong>suy giảm</strong>.
+            Nếu kết quả là số dương (+), đó là sự <strong>tăng trưởng</strong>. Nếu kết quả là số âm (-), đó là sự <strong>suy giảm</strong>. Nếu bạn muốn tính toán lợi nhuận ngân hàng, hãy thử <Link href="/compound-interest">Công cụ tính lãi kép</Link>.
           </p>
         </>
       );
@@ -67,7 +73,7 @@ export const getToolDetails = (id: string, title: string): React.ReactNode => {
           </div>
           <h3>Lưu ý quan trọng</h3>
           <p>
-            BMI không phân biệt được khối lượng mỡ và khối lượng cơ bắp. Do đó, vận động viên thể hình có thể có BMI cao nhưng không bị béo phì. Hãy kết hợp đo lường các chỉ số khác.
+            BMI không phân biệt được khối lượng mỡ và khối lượng cơ bắp. Để có cái nhìn toàn diện hơn về nhu cầu năng lượng, hãy kiểm tra thêm <Link href="/bmr-tdee">Chỉ số BMR & TDEE</Link> hoặc xem <Link href="/ideal-weight">Cân nặng lý tưởng</Link>.
           </p>
         </>
       );
@@ -82,7 +88,7 @@ export const getToolDetails = (id: string, title: string): React.ReactNode => {
           </ul>
           <h3>Ứng dụng thực tế</h3>
           <p>
-            Để <strong>giảm cân</strong>, bạn cần ăn ít hơn chỉ số TDEE (thâm hụt calo). Để <strong>tăng cân</strong>, bạn cần ăn nhiều hơn TDEE (dư thừa calo).
+            Để <strong>giảm cân</strong>, bạn cần ăn ít hơn chỉ số TDEE (thâm hụt calo). Để <strong>tăng cân</strong>, bạn cần ăn nhiều hơn TDEE (dư thừa calo). Đừng quên kết hợp uống đủ nước, kiểm tra tại <Link href="/water-calculator">Công cụ tính lượng nước uống</Link>.
           </p>
         </>
       );
@@ -97,14 +103,16 @@ export const getToolDetails = (id: string, title: string): React.ReactNode => {
           </p>
           <ul className="list-disc list-inside space-y-2 ml-2 mb-4">
             <li><strong>SEO Content:</strong> Viết thẻ Meta Description (150-160 ký tự), tiêu đề chuẩn SEO.</li>
-            <li><strong>Social Media:</strong> Bài đăng Twitter/X (280 ký tự), Facebook, Instagram.</li>
+            <li><strong>Social Media:</strong> Bài đăng Twitter/X (280 ký tự), Facebook, Instagram. Nếu bạn cần icon cho bài viết, hãy dùng <Link href="/icon-facebook">Kho Icon Facebook</Link>.</li>
             <li><strong>Học thuật:</strong> Viết tiểu luận, báo cáo với giới hạn số từ cho phép.</li>
           </ul>
           <p>
-            Công cụ của chúng tôi hoạt động thời gian thực (Real-time), hỗ trợ đếm cả số câu và số đoạn văn bản.
+            Công cụ của chúng tôi hoạt động thời gian thực (Real-time). Nếu bạn cần định dạng lại văn bản (In hoa/Thường), hãy thử <Link href="/doi-kieu-chu">Công cụ đổi kiểu chữ</Link>.
           </p>
         </>
       );
+    
+    // --- SECURITY ---
     case 'password':
       return (
         <>
@@ -116,118 +124,15 @@ export const getToolDetails = (id: string, title: string): React.ReactNode => {
           <ul className="list-disc list-inside space-y-2 ml-2 my-4">
             <li><strong>Độ dài:</strong> Tối thiểu 12 ký tự (khuyên dùng 16+).</li>
             <li><strong>Đa dạng ký tự:</strong> Kết hợp chữ Hoa, chữ thường, Số và Ký tự đặc biệt (!@#$).</li>
-            <li><strong>Ngẫu nhiên:</strong> Không chứa thông tin cá nhân (ngày sinh, tên) hoặc từ có nghĩa trong từ điển.</li>
+            <li><strong>Ngẫu nhiên:</strong> Không chứa thông tin cá nhân.</li>
           </ul>
           <p className="text-sm italic text-slate-500">
-            Lưu ý: Mật khẩu được tạo ra hoàn toàn trên trình duyệt của bạn (Client-side), chúng tôi không lưu trữ bất kỳ thông tin nào.
+            Lưu ý: Mật khẩu được tạo ra hoàn toàn trên trình duyệt của bạn (Client-side). Nếu bạn cần tạo mã QR cho mật khẩu Wifi, hãy dùng <Link href="/tao-ma-qr">Công cụ tạo mã QR</Link>.
           </p>
         </>
       );
 
-    // --- NHÓM CHUYỂN ĐỔI ---
-    case 'data':
-      return (
-        <>
-          <h2>Hiểu về đơn vị dữ liệu máy tính</h2>
-          <p>
-            Trong thế giới kỹ thuật số, dữ liệu được đo lường bằng Bit và Byte. Sự nhầm lẫn thường gặp nhất là giữa hệ thập phân (của nhà sản xuất ổ cứng) và hệ nhị phân (của hệ điều hành).
-          </p>
-          <h3>Bảng quy đổi chuẩn (Hệ nhị phân - IEC)</h3>
-          <ul className="list-disc list-inside space-y-2 ml-2 my-4">
-            <li>1 Byte (B) = 8 Bits (b)</li>
-            <li>1 Kilobyte (KB) = 1024 Bytes</li>
-            <li>1 Megabyte (MB) = 1024 KB</li>
-            <li>1 Gigabyte (GB) = 1024 MB</li>
-            <li>1 Terabyte (TB) = 1024 GB</li>
-          </ul>
-          <h3>Mb vs MB?</h3>
-          <p>
-            <strong>Mb (Megabit):</strong> Thường dùng để đo tốc độ mạng (VD: Internet 100 Mbps).<br/>
-            <strong>MB (Megabyte):</strong> Thường dùng để đo dung lượng file (VD: Ảnh 5 MB).<br/>
-            Tốc độ tải xuống thực tế thường bằng tốc độ mạng chia cho 8 (100 Mbps ~ 12.5 MB/s).
-          </p>
-        </>
-      );
-
-    // --- NHÓM HÌNH HỌC (Geometry) ---
-    case 'circle':
-    case 'square':
-    case 'rectangle':
-    case 'triangle':
-    case 'trapezoid':
-    case 'rhombus':
-    case 'parallelogram':
-      return (
-        <>
-          <h2>Hình học phẳng: {title}</h2>
-          <p>
-            Công cụ này giúp bạn tính toán nhanh các thông số hình học cơ bản như Diện tích (S) và Chu vi (P).
-            Đây là các bài toán thường gặp trong chương trình giáo dục phổ thông và ứng dụng thực tế như tính diện tích đất, sơn tường, lót gạch.
-          </p>
-          <h3>Ứng dụng thực tế</h3>
-          <ul className="list-disc list-inside space-y-2 ml-2">
-            <li><strong>Xây dựng:</strong> Tính toán vật liệu cần thiết dựa trên diện tích bề mặt.</li>
-            <li><strong>Thiết kế:</strong> Sắp xếp bố cục không gian nội thất.</li>
-            <li><strong>Nông nghiệp:</strong> Tính diện tích canh tác đất đai.</li>
-          </ul>
-        </>
-      );
-
-    case 'cube':
-    case 'sphere':
-    case 'cylinder':
-    case 'cone':
-    case 'cuboid':
-      return (
-        <>
-          <h2>Hình học không gian: {title}</h2>
-          <p>
-            Đối với các hình khối 3D, chúng ta quan tâm đến Thể tích (V) - sức chứa của vật thể, và Diện tích bề mặt (toàn phần/xung quanh).
-          </p>
-          <h3>Các khái niệm</h3>
-          <ul className="list-disc list-inside space-y-2 ml-2 my-4">
-            <li><strong>Thể tích (V):</strong> Khoảng không gian mà vật thể chiếm chỗ. Đơn vị thường là m³, lít.</li>
-            <li><strong>Diện tích xung quanh (Sxq):</strong> Tổng diện tích các mặt bên (không tính đáy).</li>
-            <li><strong>Diện tích toàn phần (Stp):</strong> Tổng diện tích của tất cả các mặt bao gồm cả đáy.</li>
-          </ul>
-        </>
-      );
-
-    // --- NHÓM CÔNG CỤ KHÁC ---
-    case 'qrcode':
-      return (
-        <>
-          <h2>QR Code là gì?</h2>
-          <p>
-            QR Code (Quick Response Code) là mã vạch ma trận hai chiều có thể được đọc bởi máy quét mã vạch hoặc camera điện thoại.
-            Nó có khả năng lưu trữ thông tin như đường dẫn URL, văn bản, thông tin liên hệ (vCard), hoặc kết nối Wifi.
-          </p>
-          <h3>Tại sao nên dùng QR Code?</h3>
-          <ul className="list-disc list-inside space-y-2 ml-2">
-            <li><strong>Truy cập nhanh:</strong> Khách hàng không cần gõ lại đường link dài.</li>
-            <li><strong>Đa năng:</strong> Dùng trong thanh toán, check-in, menu nhà hàng, danh thiếp.</li>
-            <li><strong>Bền bỉ:</strong> Mã QR vẫn có thể đọc được ngay cả khi bị hỏng một phần (nhờ khả năng sửa lỗi).</li>
-          </ul>
-        </>
-      );
-      
-    case 'random':
-      return (
-        <>
-          <h2>RNG - Tạo số ngẫu nhiên</h2>
-          <p>
-            Công cụ tạo số ngẫu nhiên (Random Number Generator) sử dụng thuật toán máy tính để đưa ra một hoặc nhiều con số không theo quy luật dự đoán được trong khoảng bạn chọn.
-          </p>
-          <h3>Ứng dụng</h3>
-          <ul className="list-disc list-inside space-y-2 ml-2">
-            <li><strong>Bốc thăm trúng thưởng:</strong> Chọn người may mắn công bằng.</li>
-            <li><strong>Trò chơi:</strong> Gieo xúc xắc, chia đội.</li>
-            <li><strong>Bảo mật:</strong> Tạo mã PIN hoặc mã xác thực ngẫu nhiên.</li>
-          </ul>
-        </>
-      );
-
-    // MẶC ĐỊNH CHO CÁC TOOL CÒN LẠI
+    // --- MẶC ĐỊNH ---
     default:
       return (
         <>
@@ -240,10 +145,9 @@ export const getToolDetails = (id: string, title: string): React.ReactNode => {
             <li><strong>Miễn phí 100%:</strong> Không cần đăng ký tài khoản.</li>
             <li><strong>Tốc độ cao:</strong> Kết quả hiển thị tức thì ngay khi nhập liệu.</li>
             <li><strong>Giao diện thân thiện:</strong> Dễ sử dụng trên cả máy tính và điện thoại.</li>
-            <li><strong>Độ chính xác:</strong> Sử dụng các thuật toán chuẩn đã được kiểm định.</li>
           </ul>
           <p>
-            Hãy lưu trang này vào danh sách yêu thích (Bookmark) để sử dụng bất cứ khi nào bạn cần!
+            Hãy lưu trang này vào danh sách yêu thích (Bookmark) hoặc khám phá thêm các công cụ khác tại <Link href="/">Trang chủ MultiTools</Link>.
           </p>
         </>
       );
