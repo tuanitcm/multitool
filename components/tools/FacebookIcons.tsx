@@ -37,7 +37,7 @@ const ICON_DATA: IconCategory[] = [
       { char: '😍', keywords: 'yeu love heart eyes' },
       { char: '🤩', keywords: 'sao star struck' },
       { char: '😘', keywords: 'hon kiss' },
-      { char: 'tj', keywords: 'hon kiss' },
+
       { char: '😚', keywords: 'hon kiss closed eyes' },
       { char: '😙', keywords: 'hon kiss smiling eyes' },
       { char: '😋', keywords: 'ngon yum' },
@@ -55,7 +55,7 @@ const ICON_DATA: IconCategory[] = [
       { char: '😐', keywords: 'binh thuong neutral' },
       { char: '😑', keywords: 'vo cam expressionless' },
       { char: '😶', keywords: 'khong loi no mouth' },
-      { char: 'sm', keywords: 'cuoi nhe smirk' },
+
       { char: '😒', keywords: 'kho chiu unamused' },
       { char: '🙄', keywords: 'dao mat rolling eyes' },
       { char: '😬', keywords: 'nhan nho grimacing' },
@@ -90,21 +90,11 @@ const ICON_DATA: IconCategory[] = [
       { char: '😳', keywords: 'do mat flushed' },
       { char: '🥺', keywords: 'cau xin pleading' },
       { char: '😦', keywords: 'frowning' },
-      { char: 'ang', keywords: 'gian du anguish' },
-      { char: 'fear', keywords: 'so hai fear' },
-      { char: 'cold', keywords: 'lanh cold sweat' },
-      { char: 'sad', keywords: 'buon sad' },
-      { char: 'cry', keywords: 'khoc cry' },
+
       { char: '😭', keywords: 'khoc to loud cry' },
       { char: '😱', keywords: 'so hai scream' },
       { char: '😖', keywords: 'boi roi confounded' },
-      { char: 'persevere', keywords: 'kien tri persevere' },
-      { char: 'disappointed', keywords: 'that vong disappointed' },
-      { char: 'sweat', keywords: 'mo hoi sweat' },
-      { char: 'weary', keywords: 'met moi weary' },
-      { char: 'tired', keywords: 'met tired' },
-      { char: 'yawn', keywords: 'ngap yawn' },
-      { char: 'triumph', keywords: 'chien thang triumph' },
+
       { char: '😡', keywords: 'gian du rage' },
       { char: '😠', keywords: 'gian angry' },
       { char: '🤬', keywords: 'chui the cursing' },
@@ -503,6 +493,18 @@ export const FacebookIcons = () => {
 
   return (
     <div className="space-y-6">
+      {/* Search Input (Moved to top) */}
+      <div className="relative">
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+        <input
+          type="text"
+          placeholder="Tìm kiếm icon (VD: cười, khóc, tim, chó, mèo...)"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="w-full bg-white border border-slate-200 rounded-xl pl-10 pr-4 py-3 text-sm focus:border-blue-500 outline-none transition-all shadow-sm"
+        />
+      </div>
+
       {/* Input Area (Sticky) */}
       <div className="bg-white p-4 rounded-2xl border-2 border-blue-100 shadow-md sticky top-20 z-20">
         <div className="flex justify-between items-center mb-2">
@@ -537,16 +539,7 @@ export const FacebookIcons = () => {
 
       {/* Search & Grid */}
       <div className="space-y-6">
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-          <input
-            type="text"
-            placeholder="Tìm kiếm icon (VD: cười, khóc, tim, chó, mèo...)"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-white border border-slate-200 rounded-xl pl-10 pr-4 py-3 text-sm focus:border-blue-500 outline-none transition-all shadow-sm"
-          />
-        </div>
+
 
         <div className="space-y-8">
           {filteredData.length > 0 ? filteredData.map((group) => (
